@@ -1,48 +1,81 @@
 #include <iostream>
+#include <fstream>
+#include <sstream>
 #include "Grafo.h"
 
-int main() {
-    /*
-    Aresta* edges = new Aresta();
-    edges[0] = { 0, 1 };
-    edges[1] = { 1, 2 };
-    edges[2] = { 2, 0 };
-    edges[3] = { 2, 1 };
-    edges[4] = { 3, 2 };
-    edges[5] = { 4, 5 };
-    edges[6] = { 5, 4 };
-*/
-    Aresta edges[] =
-            {
-                    // pair (x, y) represents edge from x to y
-                    { 0, 1 }, { 1, 2 }, { 2, 0 }, { 2, 1 },
-                    { 3, 2 }, { 4, 5 }, { 5, 4 }
-            };
+std::vector<std::string> obtemVetorParametrosLinha(const std::string& linhaArquivo);
 
-    // Number of vertices in the graph
-    int N = 6;
+void executaSwap(Grafo *grafo, int comandante, int subordinado);
 
-    // calculate number of edges
-    int M = sizeof(edges)/sizeof(edges[0]);
+int main(int argc, char* argv[]) {
+    std::vector<std::string> vetorParametrosLinha;
 
-    // construct graph
-    Grafo grafo(edges, M, N);
+    std::string nomeArquivo = argv[1] == nullptr ? "equipe3.txt" : argv[1];
+    std::ifstream arquivoEntrada;
 
-    // print adjacency list representation of graph
-    for (int i = 0; i < N; i++)
-    {
-        // print given vertex
-        std::cout << i << " --";
+    arquivoEntrada.open(nomeArquivo);
+    if(!arquivoEntrada) {
+        std::cout << "Erro ao tentar abrir o arquivo!" << std::endl;
+    }
 
-        // print all its neighboring vertices
-        Vertice* ptr = grafo.getListaAdjacenciaVertices()[i];
-        while (ptr != nullptr)
-        {
-            std::cout << " -> " << ptr->indice << " ";
-            ptr = ptr->proximo;
+    std::vector<std::string> vetorLinhasArquivo;
+    std::string linhaArquivo;
+    while(getline(arquivoEntrada, linhaArquivo)) {
+        vetorLinhasArquivo.push_back(linhaArquivo);
+    }
+
+    vetorParametrosLinha = obtemVetorParametrosLinha(vetorLinhasArquivo[0]);
+
+    int quantidadePessoasTime = std::stoi(vetorParametrosLinha[0]);
+    int quantidadeRelacoesDiretas = std::stoi(vetorParametrosLinha[1]);
+    int quantidadeInstrucoes = std::stoi(vetorParametrosLinha[2]);
+
+    std::vector<int> vetorIdadePessoas;
+    vetorParametrosLinha = obtemVetorParametrosLinha(vetorLinhasArquivo[1]);
+    for(std::string i : vetorParametrosLinha) {
+        vetorIdadePessoas.push_back(std::stoi(i));
+    }
+
+    std::vector<Aresta> vetorArestas;
+    for(int i=0; i<quantidadeRelacoesDiretas; i++) {
+        vetorParametrosLinha = obtemVetorParametrosLinha(vetorLinhasArquivo[i+2]);
+        Aresta aresta = {std::stoi(vetorParametrosLinha[0]), std::stoi(vetorParametrosLinha[1])};
+        vetorArestas.push_back(aresta);
+    }
+
+    Grafo grafo(vetorArestas, vetorIdadePessoas, quantidadeRelacoesDiretas, quantidadePessoasTime);
+    grafo.imprimeGrafo();
+    for(int i=0; i<quantidadeInstrucoes; i++) {
+        int indiceInicialLinhaInstrucoes = 2+quantidadeRelacoesDiretas;
+        vetorParametrosLinha = obtemVetorParametrosLinha(vetorLinhasArquivo[indiceInicialLinhaInstrucoes+i]);
+        if(vetorParametrosLinha[0] == "S") {
+            executaSwap(&grafo, std::stoi(vetorParametrosLinha[1]), std::stoi(vetorParametrosLinha[2]));
+        } else if(vetorParametrosLinha[0] == "C") {
+            executaCommander();
+        } else if(vetorParametrosLinha[0] == "M") {
+            executaMeeting();
         }
-        std::cout << std::endl;
     }
 
     return 0;
+}
+
+void executaSwap(Grafo *grafo, int comandante, int subordinado) {
+    Grafo grafoSimulacao = *grafo;
+    Vertice **listaAdjacenciaVertices = grafoSimulacao.getListaAdjacenciaVertices();
+    while(listaAdjacenciaVertices[comandante]->proximo != nullptr) {
+        if(listaAdjacenciaVertices[comandante]->proximo->indice == subordinado) {
+            //remove vertice subordinado
+            //adiciona comandante como subordinado
+        }
+    }
+}
+
+std::vector<std::string> obtemVetorParametrosLinha(const std::string& linhaArquivo) {
+    std::vector<std::string> vetorParametrosLinha;
+    std::istringstream iss(linhaArquivo);
+    for(std::string linhaArquivo; iss >> linhaArquivo; ) {
+        vetorParametrosLinha.push_back(linhaArquivo);
+    }
+    return vetorParametrosLinha;
 }

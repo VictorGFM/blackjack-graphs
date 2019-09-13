@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/Victor/Desktop/TP_Grafos_Blackjack/ALG1_TP1/Grafo.cpp
+Grafo.h
+C:/Users/Victor/Desktop/TP_Grafos_Blackjack/ALG1_TP1/Grafo.h
+iostream
+-
+
+C:/Users/Victor/Desktop/TP_Grafos_Blackjack/ALG1_TP1/Grafo.h
+vector
+-
+
