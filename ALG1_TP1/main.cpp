@@ -1,81 +1,63 @@
 #include <iostream>
-#include <fstream>
-#include <sstream>
 #include "Grafo.h"
+#include "Orquestrador.h"
 
-std::vector<std::string> obtemVetorParametrosLinha(const std::string& linhaArquivo);
+void obtemVetorIdadeAlunos(int qtdAlunosTime, vector<int> &vetorIdadeAlunos);
 
-void executaSwap(Grafo *grafo, int comandante, int subordinado);
+void obtemVetorArestas(int qtdRelacoesDiretas, vector<Aresta> &vetorArestas);
 
-int main(int argc, char* argv[]) {
-    std::vector<std::string> vetorParametrosLinha;
+void executaInstrucoes(int qtdInstrucoes, Grafo &grafo);
 
-    std::string nomeArquivo = argv[1] == nullptr ? "equipe3.txt" : argv[1];
-    std::ifstream arquivoEntrada;
+int main() {
+    int qtdAlunosTime, qtdRelacoesDiretas, qtdInstrucoes;
 
-    arquivoEntrada.open(nomeArquivo);
-    if(!arquivoEntrada) {
-        std::cout << "Erro ao tentar abrir o arquivo!" << std::endl;
-    }
+    cin >> qtdAlunosTime >> qtdRelacoesDiretas >> qtdInstrucoes;
 
-    std::vector<std::string> vetorLinhasArquivo;
-    std::string linhaArquivo;
-    while(getline(arquivoEntrada, linhaArquivo)) {
-        vetorLinhasArquivo.push_back(linhaArquivo);
-    }
+    vector<int> vetorIdadeAlunos;
+    obtemVetorIdadeAlunos(qtdAlunosTime, vetorIdadeAlunos);
 
-    vetorParametrosLinha = obtemVetorParametrosLinha(vetorLinhasArquivo[0]);
+    vector<Aresta> vetorArestas;
+    obtemVetorArestas(qtdRelacoesDiretas, vetorArestas);
 
-    int quantidadePessoasTime = std::stoi(vetorParametrosLinha[0]);
-    int quantidadeRelacoesDiretas = std::stoi(vetorParametrosLinha[1]);
-    int quantidadeInstrucoes = std::stoi(vetorParametrosLinha[2]);
-
-    std::vector<int> vetorIdadePessoas;
-    vetorParametrosLinha = obtemVetorParametrosLinha(vetorLinhasArquivo[1]);
-    for(std::string i : vetorParametrosLinha) {
-        vetorIdadePessoas.push_back(std::stoi(i));
-    }
-
-    std::vector<Aresta> vetorArestas;
-    for(int i=0; i<quantidadeRelacoesDiretas; i++) {
-        vetorParametrosLinha = obtemVetorParametrosLinha(vetorLinhasArquivo[i+2]);
-        Aresta aresta = {std::stoi(vetorParametrosLinha[0]), std::stoi(vetorParametrosLinha[1])};
-        vetorArestas.push_back(aresta);
-    }
-
-    Grafo grafo(vetorArestas, vetorIdadePessoas, quantidadeRelacoesDiretas, quantidadePessoasTime);
+    Grafo grafo(vetorArestas, vetorIdadeAlunos, qtdRelacoesDiretas, qtdAlunosTime);
     grafo.imprimeGrafo();
-    for(int i=0; i<quantidadeInstrucoes; i++) {
-        int indiceInicialLinhaInstrucoes = 2+quantidadeRelacoesDiretas;
-        vetorParametrosLinha = obtemVetorParametrosLinha(vetorLinhasArquivo[indiceInicialLinhaInstrucoes+i]);
-        if(vetorParametrosLinha[0] == "S") {
-            executaSwap(&grafo, std::stoi(vetorParametrosLinha[1]), std::stoi(vetorParametrosLinha[2]));
-        } else if(vetorParametrosLinha[0] == "C") {
-            executaCommander();
-        } else if(vetorParametrosLinha[0] == "M") {
-            executaMeeting();
-        }
-    }
+
+    executaInstrucoes(qtdInstrucoes, grafo);
 
     return 0;
 }
 
-void executaSwap(Grafo *grafo, int comandante, int subordinado) {
-    Grafo grafoSimulacao = *grafo;
-    Vertice **listaAdjacenciaVertices = grafoSimulacao.getListaAdjacenciaVertices();
-    while(listaAdjacenciaVertices[comandante]->proximo != nullptr) {
-        if(listaAdjacenciaVertices[comandante]->proximo->indice == subordinado) {
-            //remove vertice subordinado
-            //adiciona comandante como subordinado
+void executaInstrucoes(int qtdInstrucoes, Grafo &grafo) {
+    for(int i=0; i < qtdInstrucoes; i++) {
+        string tipoInstrucao;
+        cin >> tipoInstrucao;
+        if(tipoInstrucao == "S") {
+            int alunoA, alunoB;
+            cin >> alunoA >> alunoB;
+            executaSwap(&grafo, alunoA, alunoB);
+        } else if(tipoInstrucao == "C") {
+            int aluno;
+            cin >> aluno;
+            executaCommander(&grafo, aluno);
+        } else if(tipoInstrucao == "M") {
+            executaMeeting(grafo);
         }
     }
 }
 
-std::vector<std::string> obtemVetorParametrosLinha(const std::string& linhaArquivo) {
-    std::vector<std::string> vetorParametrosLinha;
-    std::istringstream iss(linhaArquivo);
-    for(std::string linhaArquivo; iss >> linhaArquivo; ) {
-        vetorParametrosLinha.push_back(linhaArquivo);
+void obtemVetorIdadeAlunos(int qtdAlunosTime, vector<int> &vetorIdadeAlunos) {
+    for(int i=0; i < qtdAlunosTime; i++) {
+        int idade;
+        cin >> idade;
+        vetorIdadeAlunos.push_back(idade);
     }
-    return vetorParametrosLinha;
+}
+
+void obtemVetorArestas(int qtdRelacoesDiretas, vector<Aresta> &vetorArestas) {
+    for(int i=0; i < qtdRelacoesDiretas; i++) {
+        int fonte, origem;
+        cin >> fonte >> origem;
+        Aresta aresta = {fonte, origem};
+        vetorArestas.push_back(aresta);
+    }
 }

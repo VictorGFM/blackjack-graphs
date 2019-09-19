@@ -1,12 +1,15 @@
 #ifndef GRAFO_H
 #define GRAFO_H
 
+#include <iostream>
 #include <vector>
+
+using namespace std;
 
 struct Vertice {
     int indice;
     int valor;
-    Vertice* proximo;
+    vector<int> verticesAdjacentes;
 };
 
 struct Aresta {
@@ -16,14 +19,12 @@ struct Aresta {
 class Grafo {
 
     private:
-        Vertice **listaAdjacenciaVertices;
-        int N, M; //quantidade de Vertices e quantidade de Arestas do Grafo
-        Vertice* obtemVerticeAdjacente(int destino, Vertice* verticeFonte, int idadePessoa);
+        vector<Vertice*> listaVertices;
+        int N, M; //quantidade de Vertices e quantidade de Arestas do Grafo respectivamente.
     public:
-        Grafo(std::vector<Aresta> arestas, std::vector<int> idadePessoas, int quantidadeArestas, int quantidadeVertices);
-        ~Grafo();
+        Grafo(vector<Aresta> arestas, vector<int> idadeAlunos, int quantidadeArestas, int quantidadeVertices);
         void imprimeGrafo();
-        Vertice** getListaAdjacenciaVertices();
+        vector<Vertice*> getListaVertices();
         int getQuantidadeVertices();
         int getQuantidadeArestas();
 };

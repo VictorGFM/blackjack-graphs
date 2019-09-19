@@ -4,6 +4,11 @@
 CMakeFiles/ALG1_TP1.dir/Grafo.cpp.obj: ../Grafo.cpp
 CMakeFiles/ALG1_TP1.dir/Grafo.cpp.obj: ../Grafo.h
 
+CMakeFiles/ALG1_TP1.dir/Orquestrador.cpp.obj: ../Grafo.h
+CMakeFiles/ALG1_TP1.dir/Orquestrador.cpp.obj: ../Orquestrador.cpp
+CMakeFiles/ALG1_TP1.dir/Orquestrador.cpp.obj: ../Orquestrador.h
+
 CMakeFiles/ALG1_TP1.dir/main.cpp.obj: ../Grafo.h
+CMakeFiles/ALG1_TP1.dir/main.cpp.obj: ../Orquestrador.h
 CMakeFiles/ALG1_TP1.dir/main.cpp.obj: ../main.cpp
 
