@@ -23,12 +23,11 @@ class Grafo {
         int N, M; //quantidade de Vertices e quantidade de Arestas do Grafo respectivamente.
     public:
         Grafo();
-        Grafo(vector<Aresta> arestas, vector<int> idadeAlunos, int quantidadeArestas, int quantidadeVertices);
+        Grafo(vector<Aresta> arestas, vector<int> valoresVertices, int qtdArestas, int qtdVertices);
         void imprimeGrafo();
         void setListaVertices(vector<Vertice*> listaVertices);
         vector<Vertice*> getListaVertices();
         int getQuantidadeVertices();
-        int getQuantidadeArestas();
 };
 
 #endif

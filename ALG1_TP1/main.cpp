@@ -3,9 +3,7 @@
 #include "Orquestrador.h"
 
 void obtemVetorIdadeAlunos(int qtdAlunosTime, vector<int> &vetorIdadeAlunos);
-
 void obtemVetorArestas(int qtdRelacoesDiretas, vector<Aresta> &vetorArestas);
-
 void executaInstrucoes(int qtdInstrucoes, Grafo &grafo);
 
 int main() {
