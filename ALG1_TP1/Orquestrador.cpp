@@ -93,7 +93,7 @@ void executaCommander(Grafo grafo, int aluno) {
     for(int i=0; i<qtdVertices; i++) {
         verticesVisitados[i] = false;
     }
-    verticesVisitados[aluno] = true;
+    verticesVisitados[aluno-1] = true;
     filaComandantes.push_back(aluno);
 
     Grafo grafoTransposto = transporGrafo(grafo);
@@ -108,15 +108,15 @@ void executaCommander(Grafo grafo, int aluno) {
             comandanteMaisJovem = alunoAtual;
         }
 
-        for(auto i : grafoTransposto.getListaVertices()[alunoAtual]->verticesAdjacentes) {
-            if(!verticesVisitados[i]) {
-                verticesVisitados[i] = true;
+        for(auto i : grafoTransposto.getListaVertices()[alunoAtual-1]->verticesAdjacentes) {
+            if(!verticesVisitados[i-1]) {
+                verticesVisitados[i-1] = true;
                 filaComandantes.push_back(i);
             }
         }
     }
 
-    if(comandanteMaisJovem == -1 || comandanteMaisJovem == alunoAtual) {
+    if(comandanteMaisJovem == -1 || comandanteMaisJovem == aluno) {
         cout << "C *" << endl;
     } else {
         cout << "C " << menorIdade << endl;
@@ -125,13 +125,17 @@ void executaCommander(Grafo grafo, int aluno) {
 }
 
 Grafo transporGrafo(Grafo grafo) {
-    Grafo grafoTransposto = grafo;
+    Grafo grafoTransposto;
+    vector<Vertice*> listaVerticesTransposta;
     for(int i=0; i<grafo.getQuantidadeVertices(); i++) {
-        grafoTransposto.getListaVertices()[i]->verticesAdjacentes.clear();
+        listaVerticesTransposta.push_back(new Vertice(*grafo.getListaVertices()[i]));
+        listaVerticesTransposta[i]->verticesAdjacentes.clear();
     }
+    grafoTransposto.setListaVertices(listaVerticesTransposta);
+
     for(int i=0; i<grafo.getQuantidadeVertices(); i++) {
         for(int j=0; j<grafo.getListaVertices()[i]->verticesAdjacentes.size(); j++) {
-            grafoTransposto.getListaVertices()[grafoTransposto.getListaVertices()[i]->verticesAdjacentes[j]-1]->verticesAdjacentes.push_back(i+1);
+            grafoTransposto.getListaVertices()[grafo.getListaVertices()[i]->verticesAdjacentes[j]-1]->verticesAdjacentes.push_back(i+1);
         }
     }
     return grafoTransposto;

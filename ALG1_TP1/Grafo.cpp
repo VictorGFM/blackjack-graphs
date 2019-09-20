@@ -1,5 +1,7 @@
 #include "Grafo.h"
 
+Grafo::Grafo() = default;
+
 Grafo::Grafo(vector<Aresta> arestas, vector<int> idadeAlunos, int quantidadeArestas, int quantidadeVertices) {
     N = quantidadeVertices;
     M = quantidadeArestas;
@@ -26,6 +28,10 @@ void Grafo::imprimeGrafo() {
         }
         cout << endl;
     }
+}
+
+void Grafo::setListaVertices(vector<Vertice*> listaVertices) {
+    this->listaVertices = listaVertices;
 }
 
 vector<Vertice*> Grafo::getListaVertices() {
