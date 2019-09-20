@@ -11,6 +11,8 @@ bool verificaCicloDFS(int verticeAtual, bool verticesVisitados[], bool pilhaRecu
 
 void criaOrdenadacaoTopologica(int verticeAtual, bool verticesVisitados[], stack<int>* pilha, Grafo grafo);
 
+Grafo transporGrafo(Grafo grafo);
+
 void executaSwap(Grafo *grafo, int alunoA, int alunoB) {
     int comandante, comandado;
     vector<int> comandadosAlunoA = grafo->getListaVertices()[alunoA - 1]->verticesAdjacentes;
@@ -82,8 +84,57 @@ void trocaVerticesAlunos(Grafo *grafo, int comandante, int comandado) {
     listaAdjacenciaComandado->push_back(comandante);
 }
 
-void executaCommander(Grafo *grafo, int aluno) {
-    cout << "commander" << endl;
+void executaCommander(Grafo grafo, int aluno) {
+    int qtdVertices = grafo.getQuantidadeVertices();
+    bool verticesVisitados[qtdVertices];
+    int menorIdade = INT32_MAX, comandanteMaisJovem = -1;
+    list<int> filaComandantes;
+
+    for(int i=0; i<qtdVertices; i++) {
+        verticesVisitados[i] = false;
+    }
+    verticesVisitados[aluno] = true;
+    filaComandantes.push_back(aluno);
+
+    Grafo grafoTransposto = transporGrafo(grafo);
+
+    int alunoAtual;
+    while(!filaComandantes.empty()) {
+        alunoAtual = filaComandantes.front();
+        filaComandantes.pop_front();
+
+        if(grafo.getListaVertices()[alunoAtual - 1]->valor < menorIdade || comandanteMaisJovem == -1) {
+            menorIdade = grafo.getListaVertices()[alunoAtual - 1]->valor;
+            comandanteMaisJovem = alunoAtual;
+        }
+
+        for(auto i : grafoTransposto.getListaVertices()[alunoAtual]->verticesAdjacentes) {
+            if(!verticesVisitados[i]) {
+                verticesVisitados[i] = true;
+                filaComandantes.push_back(i);
+            }
+        }
+    }
+
+    if(comandanteMaisJovem == -1 || comandanteMaisJovem == alunoAtual) {
+        cout << "C *" << endl;
+    } else {
+        cout << "C " << menorIdade << endl;
+    }
+
+}
+
+Grafo transporGrafo(Grafo grafo) {
+    Grafo grafoTransposto = grafo;
+    for(int i=0; i<grafo.getQuantidadeVertices(); i++) {
+        grafoTransposto.getListaVertices()[i]->verticesAdjacentes.clear();
+    }
+    for(int i=0; i<grafo.getQuantidadeVertices(); i++) {
+        for(int j=0; j<grafo.getListaVertices()[i]->verticesAdjacentes.size(); j++) {
+            grafoTransposto.getListaVertices()[grafoTransposto.getListaVertices()[i]->verticesAdjacentes[j]-1]->verticesAdjacentes.push_back(i+1);
+        }
+    }
+    return grafoTransposto;
 }
 
 void executaMeeting(Grafo grafo) {

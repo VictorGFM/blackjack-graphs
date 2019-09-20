@@ -38,7 +38,7 @@ void executaInstrucoes(int qtdInstrucoes, Grafo &grafo) {
         } else if(tipoInstrucao == "C") {
             int aluno;
             cin >> aluno;
-            executaCommander(&grafo, aluno);
+            executaCommander(grafo, aluno);
         } else if(tipoInstrucao == "M") {
             executaMeeting(grafo);
         }
