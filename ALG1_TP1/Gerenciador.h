@@ -1,5 +1,5 @@
-#ifndef ALG1_TP1_ORQUESTRADOR_H
-#define ALG1_TP1_ORQUESTRADOR_H
+#ifndef ALG1_TP1_GERENCIADOR_H
+#define ALG1_TP1_GERENCIADOR_H
 
 #include "Grafo.h"
 

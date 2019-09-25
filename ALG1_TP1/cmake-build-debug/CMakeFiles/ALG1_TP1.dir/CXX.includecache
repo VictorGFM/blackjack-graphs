@@ -12,22 +12,18 @@ iostream
 vector
 -
 
-C:/Users/Victor/Desktop/TP_Grafos_Blackjack/ALG1_TP1/Orquestrador.cpp
-Orquestrador.h
-C:/Users/Victor/Desktop/TP_Grafos_Blackjack/ALG1_TP1/Orquestrador.h
-algorithm
--
-list
--
-stack
--
-
 C:/Users/Victor/Desktop/TP_Grafos_Blackjack/ALG1_TP1/Orquestrador.h
 Grafo.h
 C:/Users/Victor/Desktop/TP_Grafos_Blackjack/ALG1_TP1/Grafo.h
 
 C:/Users/Victor/Desktop/TP_Grafos_Blackjack/ALG1_TP1/main.cpp
 iostream
+-
+fstream
+-
+sstream
+-
+time.h
 -
 Grafo.h
 C:/Users/Victor/Desktop/TP_Grafos_Blackjack/ALG1_TP1/Grafo.h

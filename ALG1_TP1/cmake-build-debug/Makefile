@@ -122,6 +122,33 @@ ALG1_TP1/fast:
 	$(MAKE) -f CMakeFiles\ALG1_TP1.dir\build.make CMakeFiles/ALG1_TP1.dir/build
 .PHONY : ALG1_TP1/fast
 
+Gerenciador.obj: Gerenciador.cpp.obj
+
+.PHONY : Gerenciador.obj
+
+# target to build an object file
+Gerenciador.cpp.obj:
+	$(MAKE) -f CMakeFiles\ALG1_TP1.dir\build.make CMakeFiles/ALG1_TP1.dir/Gerenciador.cpp.obj
+.PHONY : Gerenciador.cpp.obj
+
+Gerenciador.i: Gerenciador.cpp.i
+
+.PHONY : Gerenciador.i
+
+# target to preprocess a source file
+Gerenciador.cpp.i:
+	$(MAKE) -f CMakeFiles\ALG1_TP1.dir\build.make CMakeFiles/ALG1_TP1.dir/Gerenciador.cpp.i
+.PHONY : Gerenciador.cpp.i
+
+Gerenciador.s: Gerenciador.cpp.s
+
+.PHONY : Gerenciador.s
+
+# target to generate assembly for a file
+Gerenciador.cpp.s:
+	$(MAKE) -f CMakeFiles\ALG1_TP1.dir\build.make CMakeFiles/ALG1_TP1.dir/Gerenciador.cpp.s
+.PHONY : Gerenciador.cpp.s
+
 Grafo.obj: Grafo.cpp.obj
 
 .PHONY : Grafo.obj
@@ -148,33 +175,6 @@ Grafo.s: Grafo.cpp.s
 Grafo.cpp.s:
 	$(MAKE) -f CMakeFiles\ALG1_TP1.dir\build.make CMakeFiles/ALG1_TP1.dir/Grafo.cpp.s
 .PHONY : Grafo.cpp.s
-
-Orquestrador.obj: Orquestrador.cpp.obj
-
-.PHONY : Orquestrador.obj
-
-# target to build an object file
-Orquestrador.cpp.obj:
-	$(MAKE) -f CMakeFiles\ALG1_TP1.dir\build.make CMakeFiles/ALG1_TP1.dir/Orquestrador.cpp.obj
-.PHONY : Orquestrador.cpp.obj
-
-Orquestrador.i: Orquestrador.cpp.i
-
-.PHONY : Orquestrador.i
-
-# target to preprocess a source file
-Orquestrador.cpp.i:
-	$(MAKE) -f CMakeFiles\ALG1_TP1.dir\build.make CMakeFiles/ALG1_TP1.dir/Orquestrador.cpp.i
-.PHONY : Orquestrador.cpp.i
-
-Orquestrador.s: Orquestrador.cpp.s
-
-.PHONY : Orquestrador.s
-
-# target to generate assembly for a file
-Orquestrador.cpp.s:
-	$(MAKE) -f CMakeFiles\ALG1_TP1.dir\build.make CMakeFiles/ALG1_TP1.dir/Orquestrador.cpp.s
-.PHONY : Orquestrador.cpp.s
 
 main.obj: main.cpp.obj
 
@@ -212,12 +212,12 @@ help:
 	@echo ... ALG1_TP1
 	@echo ... edit_cache
 	@echo ... rebuild_cache
+	@echo ... Gerenciador.obj
+	@echo ... Gerenciador.i
+	@echo ... Gerenciador.s
 	@echo ... Grafo.obj
 	@echo ... Grafo.i
 	@echo ... Grafo.s
-	@echo ... Orquestrador.obj
-	@echo ... Orquestrador.i
-	@echo ... Orquestrador.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

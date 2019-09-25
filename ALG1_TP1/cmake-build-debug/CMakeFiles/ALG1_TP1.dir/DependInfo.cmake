@@ -4,8 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "C:/Users/Victor/Desktop/TP_Grafos_Blackjack/ALG1_TP1/Gerenciador.cpp" "C:/Users/Victor/Desktop/TP_Grafos_Blackjack/ALG1_TP1/cmake-build-debug/CMakeFiles/ALG1_TP1.dir/Gerenciador.cpp.obj"
   "C:/Users/Victor/Desktop/TP_Grafos_Blackjack/ALG1_TP1/Grafo.cpp" "C:/Users/Victor/Desktop/TP_Grafos_Blackjack/ALG1_TP1/cmake-build-debug/CMakeFiles/ALG1_TP1.dir/Grafo.cpp.obj"
-  "C:/Users/Victor/Desktop/TP_Grafos_Blackjack/ALG1_TP1/Orquestrador.cpp" "C:/Users/Victor/Desktop/TP_Grafos_Blackjack/ALG1_TP1/cmake-build-debug/CMakeFiles/ALG1_TP1.dir/Orquestrador.cpp.obj"
   "C:/Users/Victor/Desktop/TP_Grafos_Blackjack/ALG1_TP1/main.cpp" "C:/Users/Victor/Desktop/TP_Grafos_Blackjack/ALG1_TP1/cmake-build-debug/CMakeFiles/ALG1_TP1.dir/main.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")

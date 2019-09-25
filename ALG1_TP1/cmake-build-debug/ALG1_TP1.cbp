@@ -82,16 +82,16 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="C:/Users/Victor/Desktop/TP_Grafos_Blackjack/ALG1_TP1/Gerenciador.cpp">
+			<Option target="ALG1_TP1"/>
+		</Unit>
+		<Unit filename="C:/Users/Victor/Desktop/TP_Grafos_Blackjack/ALG1_TP1/Gerenciador.h">
+			<Option target="ALG1_TP1"/>
+		</Unit>
 		<Unit filename="C:/Users/Victor/Desktop/TP_Grafos_Blackjack/ALG1_TP1/Grafo.cpp">
 			<Option target="ALG1_TP1"/>
 		</Unit>
 		<Unit filename="C:/Users/Victor/Desktop/TP_Grafos_Blackjack/ALG1_TP1/Grafo.h">
-			<Option target="ALG1_TP1"/>
-		</Unit>
-		<Unit filename="C:/Users/Victor/Desktop/TP_Grafos_Blackjack/ALG1_TP1/Orquestrador.cpp">
-			<Option target="ALG1_TP1"/>
-		</Unit>
-		<Unit filename="C:/Users/Victor/Desktop/TP_Grafos_Blackjack/ALG1_TP1/Orquestrador.h">
 			<Option target="ALG1_TP1"/>
 		</Unit>
 		<Unit filename="C:/Users/Victor/Desktop/TP_Grafos_Blackjack/ALG1_TP1/main.cpp">

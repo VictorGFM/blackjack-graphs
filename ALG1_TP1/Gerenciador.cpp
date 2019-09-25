@@ -1,4 +1,4 @@
-#include "Orquestrador.h"
+#include "Gerenciador.h"
 #include <algorithm>
 #include <list>
 #include <stack>
@@ -9,7 +9,7 @@ bool contemCiclo(Grafo *grafo);
 bool verificaCicloDFS(int verticeAtual, bool verticesVisitados[], bool pilhaRecursividade[], Grafo *grafo);
 void criaOrdenadacaoTopologica(int verticeAtual, bool verticesVisitados[], stack<int>* pilha, Grafo grafo);
 Grafo transporGrafo(Grafo grafo);
-void defineComandanteMaisJovem(Grafo &grafo, bool *verticesVisitados, list<int> &filaComandantes,
+void defineComandanteMaisJovem(Grafo &grafo, int aluno, bool *verticesVisitados, list<int> &filaComandantes,
                                Grafo &grafoTransposto, int &menorIdade, int &comandanteMaisJovem);
 
 //Realiza comando SWAP.
@@ -117,10 +117,10 @@ void executaCommander(Grafo grafo, int aluno) {
     Grafo grafoTransposto = transporGrafo(grafo);
 
     //Percorre grafo transposto a fim de achar o comandante mais jovem de um aluno.
-    defineComandanteMaisJovem(grafo, verticesVisitados, filaComandantes, grafoTransposto, menorIdade,
+    defineComandanteMaisJovem(grafo, aluno, verticesVisitados, filaComandantes, grafoTransposto, menorIdade,
                               comandanteMaisJovem);
 
-    if(comandanteMaisJovem == -1 || comandanteMaisJovem == aluno) {
+    if(comandanteMaisJovem == -1) {
         cout << "C *" << endl;
     } else {
         cout << "C " << menorIdade << endl;
@@ -147,14 +147,14 @@ Grafo transporGrafo(Grafo grafo) {
 }
 
 //Busca comandante mais jovem de aluno ao percorrer grafo transposto.
-void defineComandanteMaisJovem(Grafo &grafo, bool *verticesVisitados, list<int> &filaComandantes,
+void defineComandanteMaisJovem(Grafo &grafo, int aluno, bool *verticesVisitados, list<int> &filaComandantes,
                                Grafo &grafoTransposto, int &menorIdade, int &comandanteMaisJovem) {
     int alunoAtual;
     while(!filaComandantes.empty()) {
         alunoAtual = filaComandantes.front();
         filaComandantes.pop_front();
 
-        if(grafo.getListaVertices()[alunoAtual - 1]->valor < menorIdade || comandanteMaisJovem == -1) {
+        if((grafo.getListaVertices()[alunoAtual - 1]->valor < menorIdade || comandanteMaisJovem == -1) && alunoAtual!=aluno) {
             menorIdade = grafo.getListaVertices()[alunoAtual - 1]->valor;
             comandanteMaisJovem = alunoAtual;
         }
@@ -189,6 +189,7 @@ void executaMeeting(Grafo grafo) {
         cout << " " << pilha.top()+1;
         pilha.pop();
     }
+    cout << endl;
 }
 
 //Ordena vertices do grafo por meio de ordem topologica em uma pilha.
