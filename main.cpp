@@ -1,7 +1,6 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include <time.h>
 #include "Grafo.h"
 #include "Gerenciador.h"
 
@@ -17,9 +16,7 @@ int main(int argc, char *argv[]) {
     vector<string> vetorParametrosLinha;
     vector<int> vetorIdadeAlunos;
     vector<Aresta> vetorArestas;
-    clock_t tempoInicial, tempoFinal;
 
-    //tempoInicial = clock();
     //Verifica se argumento com nome do arquivo de entrada foi informado como parametro.
     if(argv[1] == nullptr) {
         cout << "Parametro de arquivo de entrada nao informado!";
@@ -54,11 +51,7 @@ int main(int argc, char *argv[]) {
 
     //Executa instrucoes informadas no arquivo de entrada.
     executaInstrucoes(grafo, qtdInstrucoes, qtdRelacoesDiretas, vetorLinhasArquivo);
-    /*
-    tempoFinal = clock();
 
-    cout << endl << "Tempo de Execucao: " << ((tempoFinal- tempoInicial) * 1000.0 / CLOCKS_PER_SEC);
-    */
     return 0;
 }
 
@@ -78,7 +71,7 @@ void obtemLinhasArquivo(ifstream &arquivoEntrada, vector<string> &vetorLinhasArq
 }
 
 ifstream obtemArquivoEntrada(char *argv[]) {
-    string nomeArquivo = "../../Testes/input3.txt";
+    string nomeArquivo = argv[1];
     ifstream arquivoEntrada;
     arquivoEntrada.open(nomeArquivo);
     return arquivoEntrada;

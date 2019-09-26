@@ -24,7 +24,6 @@ class Grafo {
     public:
         Grafo();
         Grafo(vector<Aresta> arestas, vector<int> valoresVertices, int qtdArestas, int qtdVertices);
-        void imprimeGrafo();
         void setListaVertices(vector<Vertice*> listaVertices);
         vector<Vertice*> getListaVertices();
         int getQuantidadeVertices();

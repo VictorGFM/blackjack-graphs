@@ -20,16 +20,6 @@ Grafo::Grafo(vector<Aresta> arestas, vector<int> valoresVertices, int qtdArestas
     }
 }
 
-void Grafo::imprimeGrafo() { // Imprime os vértices do grafo e seus adjacentes
-    for(int i=0; i<N; i++) {
-        cout << listaVertices[i]->indice << "(" << listaVertices[i]->valor << ")" << ": ";
-        for(int j=0; j<listaVertices[i]->verticesAdjacentes.size(); j++) {
-            cout << listaVertices[i]->verticesAdjacentes[j] << ";";
-        }
-        cout << endl;
-    }
-}
-
 void Grafo::setListaVertices(vector<Vertice*> listaVertices) {
     this->listaVertices = listaVertices;
 }
