@@ -1,4 +1,4 @@
-ALL = tp1
+ALL = blackjack-graphs
 SRC = $(wildcard *.cpp)
 OBJ = $(patsubst %.cpp, %.o, $(wildcard *.cpp))
 

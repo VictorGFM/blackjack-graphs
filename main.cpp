@@ -19,7 +19,7 @@ int main(int argc, char *argv[]) {
 
     //Verifica se argumento com nome do arquivo de entrada foi informado como parametro.
     if(argv[1] == nullptr) {
-        cout << "Parametro de arquivo de entrada nao informado!";
+        cout << "Parametro de arquivo de entrada nao informado!" << endl;
         return 1;
     }
 

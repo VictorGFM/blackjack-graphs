@@ -139,7 +139,7 @@ Grafo transporGrafo(Grafo grafo) {
     grafoTransposto.setListaVertices(listaVerticesTransposta);
 
     for(int i=0; i<grafo.getQuantidadeVertices(); i++) {
-        for(int j=0; j<grafo.getListaVertices()[i]->verticesAdjacentes.size(); j++) {
+        for(int j=0; j<int(grafo.getListaVertices()[i]->verticesAdjacentes.size()); j++) {
             grafoTransposto.getListaVertices()[grafo.getListaVertices()[i]->verticesAdjacentes[j]-1]->verticesAdjacentes.push_back(i+1);
         }
     }
